@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
-import axios from 'axios';
+//import axios from 'axios';
+import db from './assets/db.json';
 import {
   Header,
   Splash,
@@ -70,20 +71,17 @@ function App() {
   };
 
   const getMusics = async () => {
-    await axios
-      .get('http://localhost:5000/musics')
-      .then(({ data: { musics } }) => {
-        musics.sort((a, b) => -a.vote + b.vote);
-        musics.map((v) => {
-          const imgModule = require(`./assets/${v.cover}`);
-          const AudModule = require(`./assets/${v.source}`);
-          v.cover = imgModule.default;
-          v.source = AudModule.default;
-          v.isOnList = false;
-          return v;
-        });
-        setList(musics);
-      });
+    const { musics } = db;
+    musics.sort((a, b) => -a.vote + b.vote);
+    musics.map((v) => {
+      const imgModule = require(`./assets/${v.cover}`);
+      const AudModule = require(`./assets/${v.source}`);
+      v.cover = imgModule.default;
+      v.source = AudModule.default;
+      v.isOnList = false;
+      return v;
+    });
+    setList(musics);
   };
 
   useEffect(() => {
