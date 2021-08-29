@@ -14,4 +14,4 @@ $ npm start
 
 Eventually, you will meet below.
 
-<img src="../demo.gif" />
+<img src="./demo.gif" />
