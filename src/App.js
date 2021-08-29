@@ -75,9 +75,7 @@ function App() {
     musics.sort((a, b) => -a.vote + b.vote);
     musics.map((v) => {
       const imgModule = require(`./assets/${v.cover}`);
-      const AudModule = require(`./assets/${v.source}`);
       v.cover = imgModule.default;
-      v.source = AudModule.default;
       v.isOnList = false;
       return v;
     });
